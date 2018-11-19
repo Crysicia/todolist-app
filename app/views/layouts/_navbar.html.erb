@@ -23,18 +23,22 @@
       </li>
 
     </ul>
-    <img class="rounded-circle" height="50px" width="50px" src="http://digitalspyuk.cdnds.net/17/25/320x320/square-1498216547-avatar-neytiri.jpg">
-    <ul id="dropdown-content">
-      <% if user_signed_in? %>
-      <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-      <li>
-        <%= link_to 'Login', new_user_session_path %>
-      </li>
-      <li>
-        <%= link_to 'Sign up', new_user_registration_path %>
-      </li>
-      <% end %>
-    </ul>
+    <div id="dropdown">
+      <img class="rounded-circle" height="50px" width="50px" src="http://digitalspyuk.cdnds.net/17/25/320x320/square-1498216547-avatar-neytiri.jpg">
+      <ul id="dropdown-content">
+        <% if user_signed_in? %>
+        <li>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to 'Login', new_user_session_path %>
+        </li>
+        <li>
+          <%= link_to 'Sign up', new_user_registration_path %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>
