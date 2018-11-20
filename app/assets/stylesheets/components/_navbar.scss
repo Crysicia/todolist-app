@@ -19,3 +19,12 @@
   display: block;
   margin-left: -25px;
 }
+
+#dropdown-content li a {
+  color: blue;
+  text-decoration: underline;
+}
+
+#dropdown-content li a:hover {
+  color: violet;
+}

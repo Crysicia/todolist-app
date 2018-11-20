@@ -2,38 +2,98 @@
 <%= render 'layouts/task_form'  %>
 <div class="container">
   <ul id="tabs">
-  <% @categories.each do |category|%>
-  <li><%= category.title %></li>
-  <div class="card">
-    <ul>
-      <% category.tasks.each do |task|  %>
-      <li>
-        <%= task.title  %>
-        <% unless task.deadline.nil? %>
-          , to read: <%= task.deadline.strftime('%D')  %>
+    <% @categories.each do |category|%>
+    <li>
+      <%= category.title %>
+    </li>
+    <div class="card">
+      <ul>
+        <% category.tasks.each do |task|  %>
+        <li>
+          <%= task.title  %>
+          <% unless task.deadline.nil? %>
+          , to read:
+          <%= task.deadline.strftime('%D')  %>
+          <% end %>
+        </li>
         <% end %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
+      </ul>
+    </div>
+    <% end %>
   </ul>
 </div>
 
 <div class="container">
   <div class="row">
     <% @tasks.each do |task|  %>
-      <div class="card col-3">
-        <% unless task.image.nil? %>
-          <%= image_tag task.image, class: "rounded-circle" %>
-        <% end %>
-      </div>
+    <div class="card col-3">
+      <% unless task.image.nil? %>
+      <%= image_tag task.image, class: "rounded-circle" %>
+      <% end %>
+    </div>
     <% end %>
   </div>
 </div>
 <div>
 
 </div>
+<div class="overlay"></div>
+<div id="modal">
+  <ul id="tabs">
+    <li>Login</li>
+
+    <div>
+      <h2>Login</h2>
+      <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="LEdoqls3bniw5dRxcG0UTuFgV7cxJ9yltFoXb04OUFkgNpxfznQDjQ+YA0Tu54+9R4qhtYe0bsWgJuGOFvalZw==">
+        <div class="field">
+          <label for="user_email">Email</label><br>
+          <input autofocus="autofocus" autocomplete="email" type="email" value="" name="user[email]" id="user_email">
+        </div>
+
+        <div class="field">
+          <label for="user_password">Password</label><br>
+          <input autocomplete="current-password" type="password" name="user[password]" id="user_password">
+        </div>
+
+        <div class="field">
+          <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+          <label for="user_remember_me">Remember me</label>
+        </div>
+
+        <div class="actions">
+          <input type="submit" name="commit" value="Log in" data-disable-with="Log in">
+        </div>
+      </form>
+    </div>
+    <li>Signup</li>
+    <div>
+      <h2>Signup</h2>
+      <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="gFhlQ8aSVseh9Emx+FFxYp/psJ+uQ76Y4zVJCIrcG8ItURh7Ciqhrws3kqmPNGCvzOH8akslCDXQTQ6hpha9jw==">
 
 
+        <div class="field">
+          <label for="user_email">Email</label><br>
+          <input autofocus="autofocus" autocomplete="email" type="email" value="" name="user[email]" id="user_email">
+        </div>
+
+        <div class="field">
+          <label for="user_password">Password</label>
+          <em>(6 characters minimum)</em>
+          <br>
+          <input autocomplete="new-password" type="password" name="user[password]" id="user_password">
+        </div>
+
+        <div class="field">
+          <label for="user_password_confirmation">Password confirmation</label><br>
+          <input autocomplete="new-password" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+        </div>
+
+        <div class="actions">
+          <input type="submit" name="commit" value="Sign up" data-disable-with="Sign up">
+        </div>
+      </form>
+    </div>
+  </ul>
+
+</div>
 <%= javascript_include_tag "tabs" %>
