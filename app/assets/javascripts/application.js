@@ -31,12 +31,82 @@ $(document).ready(function () {
   // ----- Modals
   $(".open").click(function () {
     $(".overlay, #modal").addClass("active");
-    $('#tabs > li').next().hide();
-    $('#tabs > li:last').next().show();
   });
 
   $(".close, .overlay").click(function () {
     $(".overlay, #modal").removeClass("active");
   });
   // ----- Modals [END]
+  // ----- Carousel
+  var $carousel = $("#carousel img");
+  var $pointField = $("#point-field");
+  var $length = $carousel.length-1;
+  var $index = 0;
+  
+  for (i = 0; i <= $length; i++) {
+    $pointField.append("<span id='point' value="+i+"><i class='fas fa-circle'></i></span>");
+  };
+  
+  var $points = $("#point-field > #point");
+  
+  $carousel.hide();
+  $carousel.first().show();
+
+  colorHelper();
+  
+  function colorHelper() {
+    $points.removeClass("red");
+    $points.eq($index).addClass("red");
+  }
+  
+  function nextImage() {
+    $index++;
+    if ($index > $length) {
+      $index = 0;
+    };
+    $carousel.hide();
+    $carousel.eq($index).show();
+    
+    colorHelper();
+  };
+
+  function prevImage() {
+    $index--;
+    if ($index < 0) {
+      $index = $length;
+    };
+    $carousel.hide();
+    $carousel.eq($index).show();
+    
+    colorHelper();
+  };
+
+  function goTo(int) {
+    $index = int;
+    $carousel.hide();
+    $carousel.eq($index).show();
+    
+    colorHelper();
+  };
+  
+  $("#prev").click(function () {
+    prevImage();
+  });
+  
+  $("#next").click(function () {
+    nextImage();
+  });
+  
+  $points.click(function (){
+    var attr = $(this).attr("value");
+    goTo(attr);
+  });
+  
+  // ----- Carousel [END]
+  /*var t = setInterval(function(){
+		$("#carousel ul").animate({marginLeft:-300},1000,function(){
+			$(this).find("li:last").after($(this).find("li:first"));
+			$(this).css({marginLeft:0});
+		})
+	},5000);*/
 })
