@@ -22,10 +22,8 @@
     <% end %>
   </ul>
 </div>
-<button id="prev"><i class="fas fa-angle-left"></i></button>
-<button id="next"><i class="fas fa-angle-right"></i></button>
-<button id="point" value="4">Value 4</button>
-<div class="container">
+
+<div class="container carousel">
   <div id="carousel" class="row">
     <% @tasks.each do |task|  %>
     <div>
@@ -34,8 +32,11 @@
       <% end %>
     </div>
     <% end %>
+    <div id="point-field"></div>
+    <span id="prev"><i class="fas fa-angle-left"></i></span>
+    <span id="next"><i class="fas fa-angle-right"></i></span>
   </div>
-  <div id="point-field"></div>
+
 </div>
 
 <div class="overlay"></div>
