@@ -102,11 +102,8 @@ $(document).ready(function () {
     goTo(attr);
   });
   
+  setInterval(function(){
+		nextImage();
+	},5000);
   // ----- Carousel [END]
-  /*var t = setInterval(function(){
-		$("#carousel ul").animate({marginLeft:-300},1000,function(){
-			$(this).find("li:last").after($(this).find("li:first"));
-			$(this).css({marginLeft:0});
-		})
-	},5000);*/
 })
